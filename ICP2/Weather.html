@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Weather Forecaster</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.4/angular.min.js" type="application/javascript"></script>
+
+    <style>
+        .weatherModule {
+            background: #f2f2f2;
+            height: 150px;
+            width: 250px;
+            border: 1px dashed #ccc;
+            padding: 1em;
+        }
+    </style>
+
+</head>
+<body>
+
+<div ng-app="weather" ng-controller="weatherctrl">
+    State<input type="text"  ng-model="state" id="state"/>
+    City<input type="text"  ng-model="city" id="city" />
+    <button id="btn" ng-click="getWeather()"> Show Weather </button>
+    <br/>
+    <br/>
+    <div class="weatherModule">
+        <p class="currentConditions" ng-repeat="x in currentweather">
+            {{ currentweather.html }}
+        </p>
+    </div>
+</div>
+
+</body>
+</html>
+
+<script>
+
+    angular.module('weather', [])
+        .controller('weatherctrl', function($scope, $http) {
+
+            $scope.getWeather = function() {
+
+                var state = document.getElementById('state').value;
+                var city = document.getElementById('city').value;
+                $http.get('https://api.wunderground.com/api/36b799dc821d5836/conditions/q/'+state+'/'+city+'.json').success(function(data) {
+                    console.log(data);
+                    temp = data.current_observation.temp_f;
+                    weather = data.current_observation.weather;
+                    console.log(temp);
+                    $scope.currentweather = {
+                        html: "Currently " + temp + " Degrees F and " + weather + ""
+                    }
+
+                })
+            }
+
+        });
+
+
+</script>
