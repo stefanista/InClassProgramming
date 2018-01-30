@@ -68,7 +68,7 @@
         <ul class="main-menu">
 
             <li>
-                <a class="show-2 aboutbutton" href="#"><i class="fa fa-search"></i>Search Recipe</a>
+                <a class="show-2 aboutbutton" href="#"><i class="fa fa-search"></i>Nutrition Facts</a>
             </li>
 
         </ul>
@@ -90,15 +90,15 @@
                     <div class="row">
                         <div class="col-md-8 col-sm-8" style="width: 100%;">
                             <div class="box-content profile">
-                                <h3 class="widget-title">Search Recipe</h3>
+                                <h3 class="widget-title">Nutrition Facts Search</h3>
                                 <form class="contact-form">
                                     <fieldset>
-                                        <input type="text" style="width: 44%;" class="name" id="place"
-                                               ng-model="place" placeholder="Enter Area to Find Food...">
+                                        <!--<input type="text" style="width: 44%;" class="name" id="place"
+                                               ng-model="place" placeholder="Enter Area to Find Food...">-->
                                         <input type="text" style="width: 44%;" class="name" id="recipe"
                                                ng-model="recipe" placeholder="Enter Food Name...">
                                         <input type="button" class="button" style="padding:9px 18px;"
-                                               ng-click="findRecipe();getVenues()" value="Find">
+                                               ng-click="findRecipe();getVenues()" value="Search">
                                     </fieldset>
                                 </form>
                             </div>
@@ -107,19 +107,15 @@
                     <div class="row">
                         <div class="col-md-5 col-sm-5">
                             <div class="box-content">
-                                <h3 class="widget-title" style="font-weight: 600; ">How To Make</h3>
+                                <h3 class="widget-title" style="font-weight: 600; ">Nutrition Information</h3>
 
                                 <div class="project-item" >
-                                    <li ng-repeat="r in recipelist">
-                                        <h4 class="widget-title">{{r.name}}</h4>
-                                        <div class="partition-wrap">
-                                            <div class="partition1">
-                                                <img ng-src="{{r.icon}}" style="width: 50px; height: 50px;" align="center"/>
-                                            </div>
-                                            <div class="partition2">
-                                                <a href="{{r.url}}"> {{r.url}}</a></div>
-                                        </div>
-                                    </li>
+                                    <div ng-repeat="r in recipelist">
+                                        <h4 class="widget-title">Calories: {{r.calories}}</h4>
+
+                                        <h4 class="widget-title">Weight: {{r.weight}}</h4>
+
+                                    </div>
 
 
                                 </div>

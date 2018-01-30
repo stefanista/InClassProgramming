@@ -25,16 +25,14 @@ myapp.controller( 'homeController', function ($scope, $http,$rootScope,$log, $wi
     $scope.findRecipe = function () {
         //var end = document.getElementById('endlocation').value;
         alert( "hello" + $scope.recipe );
-        $http.get( 'https://api.edamam.com/search?q=' + $scope.recipe + '&app_id=90345b31&app_key=7884f37e59a7ff7d16ceb275bec553a9&from=0&to=3' ).success( function (data1) {
+        $http.get( 'https://api.edamam.com/api/nutrition-data?app_id=b80b3342&app_key=84d36ea17c2bdb172a2c3027a0b5705b&ingr='+ $scope.recipe +'' ).success( function (data1) {
             console.log( data1 );
-            for (var i = 0; i < data1.hits.length; i++) {
-                $scope.recipelist[i]= {
+                $scope.recipelist[0]= {
 
-                    "name": data1.hits[i].recipe.label,
-                    "url": data1.hits[i].recipe.url,
-                    "icon": data1.hits[i].recipe.image
+                    "calories": data1.calories,
+                    "weight": data1.totalWeight
                 };
-            }
+
 
         } )
 
