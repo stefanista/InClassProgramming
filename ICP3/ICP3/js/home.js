@@ -1,7 +1,7 @@
 /**
  * Created by user on 24/02/2016.
  */
-var myapp = angular.module( 'homeModule', ['googleOauth','FacebookProvider'] );
+var myapp = angular.module( 'homeModule', ['googleOauth'] );
 
 myapp.config( function (TokenProvider) {
     // Demo configuration for the "angular-oauth demo" project on Google.
@@ -16,15 +16,13 @@ myapp.config( function (TokenProvider) {
         scopes: ["https://www.googleapis.com/auth/userinfo.email"]
     } );
 } );
-myapp.controller( 'homeController', function ($scope, $http,$rootScope,$log, $window, Token, Facebook,$http,$location) {
+myapp.controller( 'homeController', function ($scope, $http,$rootScope,$log, $window, Token) {
     $scope.accessToken = Token.get()
-    //  https://api.edamam.com/diet?q=chicken&app_id=${YOUR_APP_ID}&app_key=${YOUR_APP_KEY}&from=0&to=3&calories=gte%20591,%20lte%20722&health=alcohol-free
+
     $scope.recipelist = new Array();
-    $scope.venueList = new Array();
-    $scope.mostRecentReview;
+
     $scope.findRecipe = function () {
-        //var end = document.getElementById('endlocation').value;
-        alert( "hello" + $scope.recipe );
+
         $http.get( 'https://api.edamam.com/api/nutrition-data?app_id=b80b3342&app_key=84d36ea17c2bdb172a2c3027a0b5705b&ingr='+ $scope.recipe +'' ).success( function (data1) {
             console.log( data1 );
                 $scope.recipelist[0]= {
@@ -38,36 +36,20 @@ myapp.controller( 'homeController', function ($scope, $http,$rootScope,$log, $wi
 
     };
 
-    $scope.getVenues = function () {
-        var place = document.getElementById("place").value;
-        var food = document.getElementById("recipe").value;
-        if (place != null && place != "" && food != null && food != "") {
-          //  document.getElementById('div_ReviewList').style.display = 'none';
-            //This is the API that gives the list of venues based on the place and search query.
-            var handler = $http.get("https://api.foursquare.com/v2/venues/search" +
-                "?client_id=3PPNMTIKJJNDVYPFOBGSHHV2PR5A2P05PYHXDN2MKSKTTBSX" +
-                "&client_secret=0QPHT0F5RS043F4TB4KKPQSHKSAXKE5ZNOYGB5KL2MBDYAG4" +
-                "&v=20160215&limit=5" +
-                "&near=" + place +
-                "&query=" + food);
-            handler.success(function (data) {
+    //Watson Text-to-Speech api
 
-                if (data != null && data.response != null && data.response.venues != undefined && data.response.venues != null) {
-                    for (var i = 0; i < data.response.venues.length; i++) {
-                        $scope.venueList[i] = {
-                            "name": data.response.venues[i].name,
-                            "id": data.response.venues[i].id,
-                            "location": data.response.venues[i].location
-                        };
-                    }
-                }
-
-            })
-            handler.error(function (data) {
-                alert("There was some error processing your request. Please try after some time.");
-            });
-        }
+/*    $scope.getWatson = function () {
+        $http.put( 'https://stream.watsonplatform.net/text-to-speech/api/v1/synthesize?username=7fe01a17-d7c8-4358-964d-7b13d57a5001&password= jLDbPj5bTqKg &text='+ $scope.recipe+'' ).success( function (data1) {
+            console.log( data1 );
+        } )
+    };*/
+    $scope.getWatson = function () {
+        $http.put( 'https://stream.watsonplatform.net/text-to-speech/api/v1/synthesize?username=b234d9a3-d86a-4476-9c56-07173e317489&password=0pmyS3pDPqUv&text='+ $scope.recipe+'' ).success( function (data1) {
+            console.log( data1 );
+        } )
     };
+
+
 
 
 
@@ -79,35 +61,6 @@ myapp.controller( 'homeController', function ($scope, $http,$rootScope,$log, $wi
 
     $rootScope.updateSession();
 
-
-    // button functions
-    $scope.getLoginStatus = function () {
-        Facebook.getLoginStatus();
-
-    };
-
-    $scope.login = function () {
-        Facebook.login();
-    };
-
-    $scope.logout = function () {
-        Facebook.logout();
-        console.log("inside");
-        $rootScope.facebook_id = "";
-    };
-
-    $scope.unsubscribe = function () {
-        Facebook.unsubscribe();
-    }
-
-    $scope.getInfo = function () {
-        FB.api( '/' + $rootScope.facebook_id, function (response) {
-            console.log( 'Good to see you, ' + response.name + '.' + $rootScope.facebook_id );
-
-        } );
-        $rootScope.info = $rootScope.session;
-
-    };
 
 
 } );

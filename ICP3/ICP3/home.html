@@ -16,21 +16,6 @@
     <link rel="stylesheet" href="css/templatemo-style.css">
     <script src="js/vendor/modernizr-2.6.2.min.js"></script>
     <style type='text/css'>
-        .partition1 {
-            width: 20%;
-            float: left;
-            margin-right: 10px;
-        }
-
-        .partition2 {
-            width: 70%;
-            float: right;
-        }
-
-        .partition-wrap {
-            overflow: hidden;
-            margin-bottom: 20px;
-        }
 
         td{
             margin: 5px;
@@ -93,12 +78,10 @@
                                 <h3 class="widget-title">Nutrition Facts Search</h3>
                                 <form class="contact-form">
                                     <fieldset>
-                                        <!--<input type="text" style="width: 44%;" class="name" id="place"
-                                               ng-model="place" placeholder="Enter Area to Find Food...">-->
                                         <input type="text" style="width: 44%;" class="name" id="recipe"
                                                ng-model="recipe" placeholder="Enter Food Name...">
                                         <input type="button" class="button" style="padding:9px 18px;"
-                                               ng-click="findRecipe();getVenues()" value="Search">
+                                               ng-click="findRecipe();getWatson()" value="Search">
                                     </fieldset>
                                 </form>
                             </div>
@@ -162,7 +145,7 @@
 <script type="text/javascript" src="http://code.angularjs.org/1.1.1/angular-resource.js"></script>
 <script type="text/javascript" src="http://code.angularjs.org/1.1.1/angular-sanitize.js"></script>
 <script src="js/home.js"></script>
-<script type="text/javascript" src="js/services.js"></script>
+
 <script src="js/googleOauth.js"></script>
 <script src="js/angularOauth.js"></script>
 
