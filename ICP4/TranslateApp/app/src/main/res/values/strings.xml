@@ -4,6 +4,7 @@
     <string name="title_activity_translate">TranslateActivity</string>
 
     <string-array name="language_array">
+
         <item>Azerbaijan</item>
         <item>Albanian</item>
         <item>Amharic</item>
@@ -53,7 +54,7 @@
         <item>Malay</item>
         <item>Malayalam</item>
         <item>Maltese</item>
-        <item>Macedonian (Creole)</item>
+        <item>Macedonian</item>
         <item>Maori</item>
         <item>Marathi</item>
         <item>Mari</item>
