@@ -1,0 +1,14 @@
+{
+  "name": "ImageApp",
+  "app_id": "123f9424",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "ionic1",
+  "watchPatterns": [
+    "scss/**/*",
+    "www/**/*",
+    "!www/lib/**/*",
+    "!www/**/*.map"
+  ]
+}
