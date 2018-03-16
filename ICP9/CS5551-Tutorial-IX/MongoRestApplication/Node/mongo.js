@@ -54,7 +54,8 @@ var insertDocument = function(db, data, callback) {
 
 var findUserwithNumber = function(db, data, callback) {
 
-    var cursor = db.collection('users').find(data.number);
+    console.log(data.number);
+    var cursor = db.collection('users').find({"pnumber":data.number});
 
     cursor.each(function(err,doc) {
         assert.equal(err,null);
