@@ -1,14 +1,18 @@
-var express = require('express')
+var express = require('express');
 var app = express();
+var path = require('path');
 
-var port = process.env.PORT || 8080;
+// set port
+var port = process.env.PORT || 8080
 
-app.use(express.static(__dirname + '/public'));
+app.use(express.static(__dirname + '/'));
 
-app.get('/', function(req, res) {
-    res.render('Home');
+// routes
+app.get("/", function(req, res) {
+    res.sendFile(path.join(__dirname + "/Home.html"));
 })
 
+// Server must listen for requests and send a response
 app.listen(port, function() {
-    console.log('app running')
+    console.log("app running");
 })
